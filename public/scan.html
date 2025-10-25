@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitor Management – Stall Scan</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="/app.js"></script>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a class="brand" href="/dashboard">Visitor Management</a>
+    </div>
+    <nav class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/">Register</a>
+      <a href="/visitors">Visitors</a>
+      <a href="/scan" class="active">Scan</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 900px; margin: 24px auto; background:#fff; border:1px solid #e6e6eb; border-radius:10px; padding:16px;">
+    <section class="section">
+      <h2>Stall Host Login</h2>
+      <form id="loginForm" style="display:grid; gap:12px; max-width:420px;">
+        <label>
+          Stall ID
+          <input type="text" id="stallId" placeholder="A or B" required />
+        </label>
+        <label>
+          Access Code
+          <input type="password" id="accessCode" placeholder="Enter stall code" required />
+        </label>
+        <button type="submit">Login</button>
+        <div class="status" id="loginStatus"></div>
+      </form>
+    </section>
+
+    <section class="section" id="scannerSection" style="display:none;">
+      <h2>Scan Visitor QR</h2>
+      <div id="reader" style="width:100%; max-width:520px;"></div>
+      <div class="status" id="scanStatus"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Visitor Management System</span>
+      <span>Made for your event</span>
+    </div>
+  </footer>
+
+  <script>
+    let session = { stallId: null, accessCode: null };
+
+    const loginForm = document.getElementById('loginForm');
+    const loginStatus = document.getElementById('loginStatus');
+    const scannerSection = document.getElementById('scannerSection');
+    const scanStatus = document.getElementById('scanStatus');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const stallId = document.getElementById('stallId').value.trim();
+      const accessCode = document.getElementById('accessCode').value.trim();
+      if (!stallId || !accessCode) {
+        loginStatus.textContent = 'Please enter stall id and access code';
+        return;
+      }
+      try {
+        const res = await fetch('/api/stall-auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stallId, accessCode })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Login failed');
+        session.stallId = stallId;
+        session.accessCode = accessCode;
+        loginStatus.textContent = `Logged in to ${data.stall.name}. Scanner ready.`;
+        scannerSection.style.display = '';
+        startScanner();
+      } catch (err) {
+        loginStatus.textContent = 'Error: ' + err.message;
+      }
+    });
+
+    function startScanner() {
+      const html5QrCode = new Html5Qrcode("reader");
+      const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+      Html5Qrcode.getCameras().then(cameras => {
+        const cameraId = cameras && cameras.length ? cameras[0].id : null;
+        if (!cameraId) { scanStatus.textContent = 'No camera found'; return; }
+        html5QrCode.start(cameraId, config, onScanSuccess, onScanFailure);
+      }).catch(err => {
+        scanStatus.textContent = 'Camera access error: ' + err;
+      });
+    }
+
+    async function onScanSuccess(decodedText) {
+      try {
+        const m = String(decodedText).match(/^VMS:(.+)$/);
+        if (!m) { scanStatus.textContent = 'Invalid QR, expected VMS:<id>'; return; }
+        const visitorId = m[1];
+        const payload = { visitorId, stallId: session.stallId, accessCode: session.accessCode };
+        const res = await fetch('/api/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Scan failed');
+        scanStatus.textContent = `OK: ${data.visitor.name} scanned at ${data.stall.name}`;
+      } catch (err) {
+        scanStatus.textContent = 'Error: ' + err.message;
+      }
+    }
+
+    function onScanFailure(err) {
+      // silent, keep trying
+    }
+  </script>
+</body>
+</html>

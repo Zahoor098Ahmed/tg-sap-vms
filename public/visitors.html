@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitor Management – Visitors</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a class="brand" href="/dashboard">Visitor Management</a>
+    </div>
+    <nav class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/">Register</a>
+      <a href="/visitors" class="active">Visitors</a>
+      <a href="/scan">Scan</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3>Menu</h3>
+        <a href="/dashboard">Overview</a>
+        <a href="/visitors" class="active">Visitors List</a>
+        <a href="/scan">Stall Scan</a>
+        <a href="/admin">Data Export</a>
+        <a href="/">Registration</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="section">
+        <h2>Registered Visitors</h2>
+        <div style="display:flex; gap:12px; margin-bottom:12px;">
+          <input id="search" type="text" placeholder="Search name/email" style="flex:2;" />
+          <select id="stallFilter" style="flex:1;"></select>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registered</th>
+                <th>Email Status</th>
+                <th>Scans</th>
+                <th>Stalls</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr><td colspan="6">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Visitor Management System</span>
+      <span>Made for your event</span>
+    </div>
+  </footer>
+
+  <script>
+    function fmtDate(iso) {
+      try { return new Date(iso).toLocaleString(); } catch { return iso; }
+    }
+
+    async function loadStalls() {
+      const res = await fetch('/api/stalls');
+      const stalls = await res.json();
+      const sel = document.getElementById('stallFilter');
+      sel.innerHTML = '<option value="">All Stalls</option>' + stalls.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+    }
+
+    let allVisitors = [];
+    async function loadVisitors() {
+      const res = await fetch('/api/visitors');
+      allVisitors = await res.json();
+      render();
+    }
+
+    function render() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const stall = document.getElementById('stallFilter').value;
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+      const filtered = allVisitors.filter(v => {
+        const matchQ = !q || (v.name.toLowerCase().includes(q) || v.email.toLowerCase().includes(q));
+        const matchStall = !stall || (v.stalls || []).includes(stall);
+        return matchQ && matchStall;
+      });
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6">No visitors found</td></tr>';
+        return;
+      }
+      filtered.forEach(v => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${v.name}</td>
+          <td>${v.email}</td>
+          <td>${fmtDate(v.registered_at)}</td>
+          <td>${v.email_status || ''}</td>
+          <td>${v.scans_count || 0}</td>
+          <td>${(v.stalls || []).join(', ')}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById('search').addEventListener('input', render);
+    document.getElementById('stallFilter').addEventListener('change', render);
+
+    loadStalls();
+    loadVisitors();
+  </script>
+</body>
+</html>

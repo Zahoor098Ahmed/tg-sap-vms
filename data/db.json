@@ -1,0 +1,260 @@
+{
+  "visitors": [
+    {
+      "id": "f09c0b26-52d7-4171-bffa-b1378cb1cc21",
+      "name": "ali",
+      "email": "ali@gmail.com",
+      "registered_at": "2025-10-22T06:51:33.370Z",
+      "email_status": "sent",
+      "email_message_id": "<2277fd31-52bf-6281-e9df-abda855ebde3@yourdomain.com>"
+    },
+    {
+      "id": "3bcf5b29-115c-4b44-95c8-42c02d1bad2f",
+      "name": "ali",
+      "email": "ali@gmail.com",
+      "registered_at": "2025-10-22T06:51:41.867Z",
+      "email_status": "sent",
+      "email_message_id": "<7bf30463-a50b-538d-279d-782c7642ca2c@yourdomain.com>"
+    },
+    {
+      "id": "200edcc2-87b4-4469-805e-d7c17e3f1fa4",
+      "name": "zahoor",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T06:52:59.675Z",
+      "email_status": "sent",
+      "email_message_id": "<a24aebe7-b800-9ad0-7334-05a2bdcccad1@yourdomain.com>"
+    },
+    {
+      "id": "4f0981bf-d9e0-4b4b-91ca-15737c05f7e6",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T07:51:17.354Z",
+      "email_status": "sent",
+      "email_message_id": "<d832186b-6cbf-354d-fb00-9197c1f07988@yourdomain.com>"
+    },
+    {
+      "id": "cc1df597-30c8-40b1-bbd8-07bf1a561d56",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:02:34.175Z",
+      "email_status": "sent",
+      "email_message_id": "<428ce16f-3eb9-9c0f-8b4d-1817a833e8eb@yourdomain.com>"
+    },
+    {
+      "id": "a52e373f-bfdf-4016-92aa-921c2a1951ec",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:13:28.006Z",
+      "email_status": "sent",
+      "email_message_id": "<74b09f7c-ecae-1924-a609-8f5de6ef030e@yourdomain.com>"
+    },
+    {
+      "id": "7d8506a3-391a-47de-8e88-9535b7780288",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:17:10.332Z",
+      "email_status": "sent",
+      "email_message_id": "<e5dd2d2a-f26d-3754-82ed-391421b2a092@yourdomain.com>"
+    },
+    {
+      "id": "e2ebf761-5431-4424-8438-96ed6992a6e4",
+      "name": "ali",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:22:22.960Z",
+      "email_status": "pending"
+    },
+    {
+      "id": "d695e04d-ba06-49da-a251-372a426f7173",
+      "name": "ali",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:23:10.702Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-427ea5bab52sm24278283f8f.22 - gsmtp"
+    },
+    {
+      "id": "51c5f78f-41f8-465c-84c1-22b20557a13b",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:24:12.595Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-42855e748c6sm1972310f8f.43 - gsmtp"
+    },
+    {
+      "id": "3f80597b-1082-4e74-80bd-5ee991e6a245",
+      "name": "fff",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:26:07.167Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-475c42d9524sm36040895e9.18 - gsmtp"
+    },
+    {
+      "id": "6a63550c-fd1c-411d-8503-18a9bcc26a3a",
+      "name": "fff",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:27:09.510Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-427f009a797sm24637140f8f.27 - gsmtp"
+    },
+    {
+      "id": "e56145ac-861a-4474-ba2c-4fca5ef4af5f",
+      "name": "ali",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-22T10:29:42.911Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-474949f0312sm35883265e9.0 - gsmtp"
+    },
+    {
+      "id": "22c8602f-a63a-4272-a348-ccd03aec7201",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:35:03.147Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-429952e2e06sm1671842f8f.46 - gsmtp"
+    },
+    {
+      "id": "8f813540-9630-4a08-975b-46d8a46b06f0",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:39:44.957Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-475dd03585esm14902115e9.6 - gsmtp"
+    },
+    {
+      "id": "33c575b3-9ce2-4c8c-9a7e-6caaea67fdd1",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:40:04.611Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-429952cbb2bsm1681118f8f.13 - gsmtp"
+    },
+    {
+      "id": "a67a61cf-c996-4e0d-9aa2-b453dba1df90",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:44:39.777Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-475dd4cc5efsm14547845e9.16 - gsmtp"
+    },
+    {
+      "id": "9639883a-3ecd-4676-8188-3effb33e4b4e",
+      "name": "zahoor",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:46:31.876Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-475dd042e77sm7713655e9.4 - gsmtp"
+    },
+    {
+      "id": "3eee1e37-0c4c-4ec3-bddd-deeb910f8cec",
+      "name": "zahoor",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:50:16.340Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-475dd05098dsm7660345e9.5 - gsmtp"
+    },
+    {
+      "id": "1078ffe6-5ab6-4cad-9010-864ff844f173",
+      "name": "zahoor",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:51:02.500Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-429952b79absm1681733f8f.3 - gsmtp"
+    },
+    {
+      "id": "3494e9e4-bcee-4ba3-85b5-df4710b2b8dc",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:58:40.740Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-429952b7b6fsm1747279f8f.1 - gsmtp"
+    },
+    {
+      "id": "1ffd1dae-5cbd-4e02-aed3-0a8f325503a4",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T04:59:52.298Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-429952b7badsm1731121f8f.7 - gsmtp"
+    },
+    {
+      "id": "f9994518-967f-447d-bd5f-d3d0561399ba",
+      "name": "SMTP Live Test",
+      "email": "zahoorjamali32@gmail.com",
+      "registered_at": "2025-10-25T05:01:34.916Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-429952cbc16sm1730904f8f.15 - gsmtp"
+    },
+    {
+      "id": "05e7716a-c246-49b3-b905-2e815fb22330",
+      "name": "SMTP Live Test",
+      "email": "zahoorjamali32@gmail.com",
+      "registered_at": "2025-10-25T05:02:08.887Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-429952b7b43sm1785177f8f.6 - gsmtp"
+    },
+    {
+      "id": "4d787918-3725-48c6-ac03-512045716bcb",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T05:09:38.321Z",
+      "email_status": "failed",
+      "email_error": "Error: Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-429952b7b43sm1810378f8f.6 - gsmtp"
+    },
+    {
+      "id": "ef423063-c752-41ab-adf9-92b456fda495",
+      "name": "SMTP Live Test",
+      "email": "zahoorjamali32@gmail.com",
+      "registered_at": "2025-10-25T05:14:36.415Z",
+      "email_status": "sent",
+      "email_message_id": "<3bec4a93-db3d-b8aa-8201-ba82de5f4b14@gmail.com>"
+    },
+    {
+      "id": "07d17f12-98b5-444d-82d1-9ef7dcce8188",
+      "name": "Zahoor Ahmed",
+      "email": "developervision32@gmail.com",
+      "registered_at": "2025-10-25T05:15:18.499Z",
+      "email_status": "sent",
+      "email_message_id": "<952f7da2-ae6a-5e07-e8c4-3846d4685b98@gmail.com>"
+    },
+    {
+      "id": "70041da5-d54d-4585-ac73-a08de5b0c8e1",
+      "name": "Zahoor",
+      "email": "zahoorjamali3395@gmail.com",
+      "registered_at": "2025-10-25T05:36:20.541Z",
+      "email_status": "sent",
+      "email_message_id": "<ff071b11-4f6c-5504-7d97-90da4344cd0c@gmail.com>"
+    }
+  ],
+  "scans": [
+    {
+      "id": "a206bd9a-d6a6-463d-9697-f15fefaffc0a",
+      "visitor_id": "07d17f12-98b5-444d-82d1-9ef7dcce8188",
+      "stall_id": "A",
+      "scanned_at": "2025-10-25T05:32:30.074Z",
+      "_id": "68fc60ee94d3ca346cc8fa34"
+    },
+    {
+      "id": "af1b9cd4-8c84-449b-b42a-514eef4f985b",
+      "visitor_id": "07d17f12-98b5-444d-82d1-9ef7dcce8188",
+      "stall_id": "B",
+      "scanned_at": "2025-10-25T05:34:05.550Z"
+    },
+    {
+      "id": "09cbc3e6-4c3b-461a-a76e-1d9acab395fd",
+      "visitor_id": "70041da5-d54d-4585-ac73-a08de5b0c8e1",
+      "stall_id": "A",
+      "scanned_at": "2025-10-25T05:40:02.007Z"
+    }
+  ],
+  "stalls": [
+    {
+      "id": "A",
+      "name": "STALL A",
+      "access_code": "stallA2025"
+    },
+    {
+      "id": "B",
+      "name": "STALL B",
+      "access_code": "stallB2025"
+    }
+  ]
+}

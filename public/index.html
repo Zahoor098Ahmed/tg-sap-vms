@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitor Management – Registration</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b74de'/><text x='50' y='60' font-size='60' text-anchor='middle' fill='white'>V</text></svg>'">
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a class="brand" href="/dashboard">Visitor Management</a>
+    </div>
+    <nav class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/" class="active">Register</a>
+      <a href="/visitors">Visitors</a>
+      <a href="/scan">Scan</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 720px; margin: 24px auto; background:#fff; border:1px solid #e6e6eb; border-radius:10px; padding:16px;">
+    <section class="section">
+      <h2 style="margin:0 0 8px;">Registration</h2>
+      <p class="hint">Enter your name and email. You will receive a QR code by email.</p>
+    </section>
+
+    <form id="regForm">
+      <label>
+        Name
+        <input type="text" name="name" placeholder="e.g., Rahul Sharma" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" placeholder="you@example.com" required />
+      </label>
+      <button type="submit">Register</button>
+      <div class="status" id="status"></div>
+      <p class="hint">To view the list, go to the <a href="/visitors">Visitors</a> page.</p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Visitor Management System</span>
+      <span>Made for your event</span>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const statusEl = document.getElementById('status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Submitting…';
+      const formData = new FormData(form);
+      const payload = { name: formData.get('name'), email: formData.get('email') };
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Registration failed');
+        statusEl.textContent = 'Registration successful! Please check your email.';
+        if (data.previewUrl) {
+          const a = document.createElement('a');
+          a.href = data.previewUrl;
+          a.target = '_blank';
+          a.textContent = 'Email Preview (Dev)';
+          statusEl.appendChild(document.createTextNode(' '));
+          statusEl.appendChild(a);
+        }
+        form.reset();
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

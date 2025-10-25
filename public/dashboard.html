@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VMS Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a class="brand" href="/dashboard">Visitor Management</a>
+    </div>
+    <nav class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/">Register</a>
+      <a href="/visitors">Visitors</a>
+      <a href="/scan">Scan</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3>Menu</h3>
+        <a href="/dashboard" class="active">Overview</a>
+        <a href="/visitors">Visitors List</a>
+        <a href="/scan">Stall Scan</a>
+        <a href="/admin">Data Export</a>
+        <a href="/">Registration</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="section">
+        <h2>Overview</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-title">Total Visitors</div>
+            <div class="card-value" id="totalVisitors">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Emails Sent</div>
+            <div class="card-value" id="emailsSent">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Scans</div>
+            <div class="card-value" id="totalScans">—</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Stall Performance</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Stall</th>
+                <th>Total Scans</th>
+                <th>Unique Visitors</th>
+              </tr>
+            </thead>
+            <tbody id="stallBody">
+              <tr><td colspan="3">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Recent Visitors</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registered</th>
+                <th>Email Status</th>
+              </tr>
+            </thead>
+            <tbody id="recentBody">
+              <tr><td colspan="4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Visitor Management System</span>
+      <span>Made for your event</span>
+    </div>
+  </footer>
+
+  <script>
+    function fmtDate(iso) {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleString();
+      } catch (e) { return iso; }
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const stats = await res.json();
+        document.getElementById('totalVisitors').textContent = stats.totalVisitors;
+        document.getElementById('emailsSent').textContent = stats.emailsSent;
+        document.getElementById('totalScans').textContent = stats.totalScans;
+
+        const stallBody = document.getElementById('stallBody');
+        stallBody.innerHTML = '';
+        if (!stats.stalls || stats.stalls.length === 0) {
+          stallBody.innerHTML = '<tr><td colspan="3">No stall data</td></tr>';
+        } else {
+          stats.stalls.forEach(s => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${s.name}</td><td>${s.scans}</td><td>${s.unique_visitors}</td>`;
+            stallBody.appendChild(tr);
+          });
+        }
+
+        const recentBody = document.getElementById('recentBody');
+        recentBody.innerHTML = '';
+        if (!stats.recentVisitors || stats.recentVisitors.length === 0) {
+          recentBody.innerHTML = '<tr><td colspan="4">No recent visitors</td></tr>';
+        } else {
+          stats.recentVisitors.forEach(v => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${v.name}</td><td>${v.email}</td><td>${fmtDate(v.registered_at)}</td><td>${v.email_status || ''}</td>`;
+            recentBody.appendChild(tr);
+          });
+        }
+      } catch (err) {
+        console.error('Failed to load stats', err);
+      }
+    }
+
+    loadStats();
+  </script>
+</body>
+</html>

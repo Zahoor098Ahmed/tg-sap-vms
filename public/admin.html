@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitor Management – Admin Export</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <a class="brand" href="/dashboard">Visitor Management</a>
+    </div>
+    <nav class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/">Register</a>
+      <a href="/visitors">Visitors</a>
+      <a href="/scan">Scan</a>
+      <a href="/admin" class="active">Admin</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 720px; margin: 24px auto; background:#fff; border:1px solid #e6e6eb; border-radius:10px; padding:16px;">
+    <section class="section">
+      <h2>Export Visitors by Stall</h2>
+      <div style="display:grid; gap:12px; max-width:420px;">
+        <label>
+          Stall
+          <select id="stallSelect"></select>
+        </label>
+        <button id="downloadBtn">Download CSV</button>
+        <div class="status" id="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span>&copy; 2025 Visitor Management System</span>
+      <span>Made for your event</span>
+    </div>
+  </footer>
+
+  <script>
+    async function loadStalls() {
+      const res = await fetch('/api/stalls');
+      const stalls = await res.json();
+      const sel = document.getElementById('stallSelect');
+      sel.innerHTML = stalls.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+    }
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const stallId = document.getElementById('stallSelect').value;
+      if (!stallId) return;
+      const url = `/api/export/stall/${stallId}`;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${stallId}-visitors.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    loadStalls();
+  </script>
+</body>
+</html>
