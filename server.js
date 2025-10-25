@@ -5,7 +5,7 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 const QRCode = require('qrcode');
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 const { MongoClient } = require('mongodb');
 
 dotenv.config();
